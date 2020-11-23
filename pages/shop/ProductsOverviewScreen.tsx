@@ -25,7 +25,7 @@ const ProductsOverviewScreen = () => {
         )}
       />
     </View>
-  );r
+  );
 };
 
 export default ProductsOverviewScreen;

@@ -13,7 +13,9 @@ const ProductItem = ({
 }: ProductItemPropsInterface) => {
   return (
     <View style={styles.product}>
-      <Image style={styles.image} source={{ uri: imageUrl }} />
+      <View style={styles.imageContainer}>
+        <Image style={styles.image} source={{ uri: imageUrl }} />
+      </View>
       <View style={styles.details}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.price}>{price.toFixed(2)}</Text>
@@ -49,9 +51,16 @@ const styles = StyleSheet.create({
     height: 300,
     margin: 20,
   },
-  image: {
+  imageContainer: {
     width: '100%',
     height: '60%',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    overflow: 'hidden',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
   },
   details: {
     alignItems: 'center',
