@@ -18,7 +18,7 @@ const ShopNavigation = () => {
         headerTitle: 'All Products',
         headerTitleStyle: {
           color: COLORS.white,
-          fontFamily: 'Montserrat-Bold',
+          fontFamily: 'RobotoMono-Bold',
         },
         headerTitleAlign: 'center',
         headerStyle: {
