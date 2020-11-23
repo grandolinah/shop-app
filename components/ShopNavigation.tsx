@@ -10,7 +10,16 @@ import CardScreen from '../pages/shop/CardScreen';
 
 import { COLORS} from '../config/colors';
 
-const ShopNavigationStack = createStackNavigator();
+export type ShopNavigationParamList = {
+  ProductDetail: {
+    item: {
+      title: string;
+    };
+  },
+  ProductOverview: {},
+};
+
+const ShopNavigationStack = createStackNavigator<ShopNavigationParamList>();
 const ShopNavigation = () => {
   return (
     <NavigationContainer>
@@ -27,6 +36,7 @@ const ShopNavigation = () => {
         headerTintColor: Platform.OS === 'android' ? COLORS.white : COLORS.maroonFlush,
       }}>
         <ShopNavigationStack.Screen name="ProductOverview" component={ProductsOverviewScreen} />
+        <ShopNavigationStack.Screen name="ProductDetail" component={ProductDetailScreen} options={({ route }) => ({ headerTitle: route.params.item.title })}/>
       </ShopNavigationStack.Navigator>
     </NavigationContainer>
   );

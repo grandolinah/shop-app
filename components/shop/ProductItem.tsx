@@ -1,5 +1,14 @@
 import React from 'react';
-import { View, Text, Image, Button, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Button,
+  StyleSheet,
+  TouchableOpacity,
+  TouchableNativeFeedback,
+  Platform,
+} from 'react-native';
 
 import { COLORS } from '../../config/colors';
 import { ProductItemPropsInterface } from '../../interfaces/product-item-props-interface';
@@ -11,26 +20,40 @@ const ProductItem = ({
   onViewDetail,
   onAddToCard,
 }: ProductItemPropsInterface) => {
+  let Touchable;
+
+  if (Platform.OS === 'android' && Platform.Version >= 21) {
+    Touchable = TouchableNativeFeedback;
+  } else {
+    Touchable = TouchableOpacity;
+  }
+
   return (
     <View style={styles.product}>
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{ uri: imageUrl }} />
-      </View>
-      <View style={styles.details}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.price}>{price.toFixed(2)}</Text>
-      </View>
-      <View style={styles.actions}>
-        <Button
-          title="View details"
-          color={COLORS.amber}
-          onPress={onViewDetail}
-        />
-        <Button
-          title="Add to card"
-          color={COLORS.maroonFlush}
-          onPress={onAddToCard}
-        />
+      <View style={styles.touchable}>
+        <Touchable onPress={onViewDetail} useForeground>
+          <View>
+            <View style={styles.imageContainer}>
+              <Image style={styles.image} source={{ uri: imageUrl }} />
+            </View>
+            <View style={styles.details}>
+              <Text style={styles.title}>{title}</Text>
+              <Text style={styles.price}>{price.toFixed(2)}</Text>
+            </View>
+            <View style={styles.actions}>
+              <Button
+                title="View details"
+                color={COLORS.amber}
+                onPress={onViewDetail}
+              />
+              <Button
+                title="Add to card"
+                color={COLORS.maroonFlush}
+                onPress={onAddToCard}
+              />
+            </View>
+          </View>
+        </Touchable>
       </View>
     </View>
   );
@@ -50,6 +73,10 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     height: 300,
     margin: 20,
+  },
+  touchable: {
+    overflow: 'hidden',
+    borderRadius: 10,
   },
   imageContainer: {
     width: '100%',

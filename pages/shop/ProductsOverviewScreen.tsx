@@ -4,10 +4,9 @@ import { View, Text, FlatList } from 'react-native';
 import PRODUCTS from '../../data/dummy-data';
 import ProductItem from '../../components/shop/ProductItem';
 
-const ProductsOverviewScreen = () => {
+const ProductsOverviewScreen = ({ navigation }) => {
   return (
     <View>
-      <Text>ProductsOverviewScreen</Text>
       <FlatList
         data={PRODUCTS}
         renderItem={(itemData) => (
@@ -17,6 +16,9 @@ const ProductsOverviewScreen = () => {
             imageUrl={itemData.item.imageUrl}
             onViewDetail={() => {
               console.log('pressed');
+              navigation.navigate('ProductDetail', {
+                item: itemData.item,
+              });
             }}
             onAddToCard={() => {
               console.log('pressed');
