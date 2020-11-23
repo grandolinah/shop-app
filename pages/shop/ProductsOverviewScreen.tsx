@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 
 import PRODUCTS from '../../data/dummy-data';
+import ProductItem from '../../components/shop/ProductItem';
 
 const ProductsOverviewScreen = () => {
   return (
@@ -10,11 +11,21 @@ const ProductsOverviewScreen = () => {
       <FlatList
         data={PRODUCTS}
         renderItem={(itemData) => (
-          <Text>{itemData.item.title}</Text>
+          <ProductItem
+            title={itemData.item.title}
+            price={itemData.item.price}
+            imageUrl={itemData.item.imageUrl}
+            onViewDetail={() => {
+              console.log('pressed');
+            }}
+            onAddToCard={() => {
+              console.log('pressed');
+            }}
+          />
         )}
       />
     </View>
-  );
+  );r
 };
 
 export default ProductsOverviewScreen;
