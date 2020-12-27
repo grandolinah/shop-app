@@ -3,9 +3,13 @@ import { View, FlatList } from 'react-native';
 
 import PRODUCTS from '../../data/dummy-data';
 
+import { useCard } from '../../context/CartContext';
+
 import ProductItem from '../../components/shop/ProductItem';
 
 const ProductsOverviewScreen = ({ navigation }) => {
+  const { cart, setCart } = useCard();
+
   return (
     <View>
       <FlatList
@@ -16,14 +20,15 @@ const ProductsOverviewScreen = ({ navigation }) => {
             price={itemData.item.price}
             imageUrl={itemData.item.imageUrl}
             onViewDetail={() => {
-              console.log('pressed');
               navigation.navigate('ProductDetail', {
                 item: itemData.item,
               });
             }}
             onAddToCard={() => {
-              console.log('pressed');
-              // TODO
+              setCart([...cart, {
+                name: itemData.item.title,
+                price: itemData.item.price,
+              }]);
             }}
           />
         )}

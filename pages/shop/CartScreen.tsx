@@ -1,23 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 
 import { COLORS } from '../../config/colors';
+
+import { useCard } from '../../context/CartContext';
+
+import { Product } from '../../interfaces/product-interface';
+
 import { cardShadow } from '../../styles/card-shadow';
 
 const CardScreen = () => {
-  const totalPrice = `Total price: $ `;
-  const cardTotalAmount = 0; // TODO
+  const { cart, setCart } = useCard();
+  const [totalAmount, setTotalAmount] = useState<number>(0);
+
+  const calculateTotalAmount = (cart: Product[]) => {
+    let totalAmount = 0;
+
+    cart.forEach((item: Product) => {
+      totalAmount += item.price;
+    });
+
+    return totalAmount;
+  };
+
+  useEffect(() => {
+    setTotalAmount(calculateTotalAmount(cart));
+  }, [cart]);
 
   return (
     <View style={styles.screen}>
       <View style={styles.summary}>
         <Text style={styles.summaryText}>
-          {totalPrice}
-          <Text style={styles.amount}>{cardTotalAmount.toFixed(2)}</Text>
+          Total price: $
+          <Text style={styles.amount}>{totalAmount.toFixed(2)}</Text>
         </Text>
         <Button
           title="Order Now"
-          onPress={() => {}}
+          onPress={() => { }}
           color={COLORS.maroonFlush}
         />
       </View>

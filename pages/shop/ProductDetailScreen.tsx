@@ -8,10 +8,14 @@ import {
   Button,
 } from 'react-native';
 
+import { useCard } from '../../context/CartContext';
+
 import { COLORS } from '../../config/colors';
 
 const ProductDetailScreen = ({ route }) => {
   const item = route.params?.item ?? '';
+
+  const { cart, setCart } = useCard();
 
   return (
     <ScrollView>
@@ -21,7 +25,10 @@ const ProductDetailScreen = ({ route }) => {
           title="Add to Cart"
           color={COLORS.maroonFlush}
           onPress={() => {
-            // TODO
+            setCart([...cart, {
+              name: item.title,
+              price: item.price,
+            }]);
           }}
         />
       </View>
