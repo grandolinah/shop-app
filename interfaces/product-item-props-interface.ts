@@ -3,5 +3,5 @@ export interface ProductItemPropsInterface {
   price: number;
   imageUrl: string;
   onViewDetail(): void;
-  onAddToCard(): void;
+  onAddToCart(): void;
 }

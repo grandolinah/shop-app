@@ -21,7 +21,7 @@ const ProductItem = ({
   price,
   imageUrl,
   onViewDetail,
-  onAddToCard,
+  onAddToCart,
 }: ProductItemPropsInterface) => {
   let Touchable;
 
@@ -50,9 +50,9 @@ const ProductItem = ({
                 onPress={onViewDetail}
               />
               <Button
-                title="Add to card"
+                title="Add to cart"
                 color={COLORS.maroonFlush}
-                onPress={onAddToCard}
+                onPress={onAddToCart}
               />
             </View>
           </View>

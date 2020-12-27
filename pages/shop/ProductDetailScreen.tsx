@@ -8,14 +8,14 @@ import {
   Button,
 } from 'react-native';
 
-import { useCard } from '../../context/CartContext';
+import { useCart } from '../../context/CartContext';
 
 import { COLORS } from '../../config/colors';
 
 const ProductDetailScreen = ({ route }) => {
   const item = route.params?.item ?? '';
 
-  const { cart, setCart } = useCard();
+  const { cart, setCart } = useCart();
 
   return (
     <ScrollView>

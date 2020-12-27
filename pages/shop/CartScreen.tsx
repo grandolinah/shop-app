@@ -3,7 +3,7 @@ import { View, Text, Button, StyleSheet, FlatList } from 'react-native';
 
 import { COLORS } from '../../config/colors';
 
-import { useCard } from '../../context/CartContext';
+import { useCart } from '../../context/CartContext';
 
 import { ProductInterface } from '../../interfaces/product-interface';
 
@@ -11,8 +11,8 @@ import { cardShadow } from '../../styles/card-shadow';
 
 import CartItem from '../../components/shop/CartItem';
 
-const CardScreen = () => {
-  const { cart, setCart } = useCard();
+const CartScreen = () => {
+  const { cart, setCart } = useCart();
   const [totalAmount, setTotalAmount] = useState<number>(0);
 
   const calculateTotalAmount = (cart: ProductInterface[]) => {
@@ -108,4 +108,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CardScreen;
+export default CartScreen;

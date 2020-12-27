@@ -3,12 +3,12 @@ import { View, FlatList } from 'react-native';
 
 import PRODUCTS from '../../data/dummy-data';
 
-import { useCard } from '../../context/CartContext';
+import { useCart } from '../../context/CartContext';
 
 import ProductItem from '../../components/shop/ProductItem';
 
 const ProductsOverviewScreen = ({ navigation }) => {
-  const { cart, setCart } = useCard();
+  const { cart, setCart } = useCart();
 
   return (
     <View>
@@ -24,7 +24,7 @@ const ProductsOverviewScreen = ({ navigation }) => {
                 item: itemData.item,
               });
             }}
-            onAddToCard={() => {
+            onAddToCart={() => {
               const restProducts = cart.filter(
                 (cartItem) => cartItem.title !== itemData.item.title,
               );
