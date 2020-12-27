@@ -94,7 +94,7 @@ const Orders = () => {
         name="Orders"
         component={OrdersScreen}
         options={({ route, navigation }) => ({
-          headerTitle: 'Orders',
+          headerTitle: 'Your orders',
           headerLeft: () => (
             <HeaderButton
               onPressed={() => {
