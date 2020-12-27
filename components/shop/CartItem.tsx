@@ -23,7 +23,7 @@ const CartItem = ({
     <View style={styles.cartItem}>
       <View style={styles.itemData}>
         <Text style={styles.quantity}>{quantity} </Text>
-        <Text style={styles.mainText}>{title}</Text>
+        <Text style={styles.mainText} numberOfLines={1} >{title}</Text>
       </View>
       <View style={styles.itemData}>
         <Text style={styles.mainText}>${amount.toFixed(2)}</Text>
@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
   mainText: {
     fontFamily: 'RobotoMono-Bold',
     fontSize: 16,
+    maxWidth: 180,
   },
   deleteButton: {
     marginLeft: 20,
