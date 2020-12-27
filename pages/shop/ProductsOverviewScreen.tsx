@@ -25,10 +25,27 @@ const ProductsOverviewScreen = ({ navigation }) => {
               });
             }}
             onAddToCard={() => {
-              setCart([...cart, {
-                name: itemData.item.title,
-                price: itemData.item.price,
-              }]);
+              const restProducts = cart.filter(
+                (cartItem) => cartItem.title !== itemData.item.title,
+              );
+              const sameProduct = cart.filter(
+                (cartItem) => cartItem.title === itemData.item.title,
+              );
+              let quantity = 1;
+
+              if (sameProduct.length > 0) {
+                quantity = sameProduct[0].quantity + 1;
+              }
+
+              setCart([
+                ...restProducts,
+                {
+                  title: itemData.item.title,
+                  price: itemData.item.price,
+                  productId: itemData.item.id,
+                  quantity: quantity,
+                },
+              ]);
             }}
           />
         )}

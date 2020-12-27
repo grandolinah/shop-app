@@ -5,16 +5,16 @@ import { Alert, StatusBar } from 'react-native';
 
 import { CardContext } from './context/CartContext';
 import ShopNavigation from './components/ShopNavigation';
-import { Product } from './interfaces/product-interface';
+import { ProductInterface } from './interfaces/product-interface';
 
 const STORAGE_KEY = '@storage_Card'; // TODO config
 
 const App: () => React.ReactNode = () => {
-  const [isStorageDataRead, setIsStorageDataRead] = useState<boolean>(false)
-  const [cart, setCart] = useState<Product[]>([]);
+  const [isStorageDataRead, setIsStorageDataRead] = useState<boolean>(false);
+  const [cart, setCart] = useState<ProductInterface[]>([]);
 
   console.log(cart);
-  const storeData = async (array: Product[]) => {
+  const storeData = async (array: ProductInterface[]) => {
     try {
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(array));
     } catch (error) {

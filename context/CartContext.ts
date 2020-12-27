@@ -1,12 +1,15 @@
 import React, { useContext, createContext } from 'react';
 
-import { Product } from '../interfaces/product-interface';
+import { ProductInterface } from '../interfaces/product-interface';
 
 export type CardContextType = {
-  cart: Product[];
-  setCart: (cart: Product[]) => void;
+  cart: ProductInterface[];
+  setCart: (cart: ProductInterface[]) => void;
 };
 
-export const CardContext = createContext<CardContextType>({ cart: [], setCart: cart => console.warn('no provider')});
+export const CardContext = createContext<CardContextType>({
+  cart: [],
+  setCart: (cart) => console.warn('no provider'),
+});
 
 export const useCard = () => useContext(CardContext);

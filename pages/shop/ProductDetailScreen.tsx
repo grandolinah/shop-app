@@ -25,10 +25,27 @@ const ProductDetailScreen = ({ route }) => {
           title="Add to Cart"
           color={COLORS.maroonFlush}
           onPress={() => {
-            setCart([...cart, {
-              name: item.title,
-              price: item.price,
-            }]);
+            const restProducts = cart.filter(
+              (cartItem) => cartItem.title !== item.title,
+            );
+            const sameProduct = cart.filter(
+              (cartItem) => cartItem.title === item.title,
+            );
+            let quantity = 1;
+
+            if (sameProduct.length > 0) {
+              quantity = sameProduct[0].quantity + 1;
+            }
+
+            setCart([
+              ...restProducts,
+              {
+                title: item.title,
+                price: item.price,
+                productId: item.id,
+                quantity: quantity,
+              },
+            ]);
           }}
         />
       </View>
