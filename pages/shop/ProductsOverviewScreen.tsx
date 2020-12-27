@@ -3,12 +3,12 @@ import { View, FlatList } from 'react-native';
 
 import PRODUCTS from '../../data/dummy-data';
 
-import { useCart } from '../../context/CartContext';
+import { useAppContext } from '../../context/AppContext';
 
 import ProductItem from '../../components/shop/ProductItem';
 
 const ProductsOverviewScreen = ({ navigation }) => {
-  const { cart, setCart } = useCart();
+  const { cart, setCart } = useAppContext();
 
   return (
     <View>

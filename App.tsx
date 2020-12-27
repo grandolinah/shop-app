@@ -3,17 +3,19 @@ import React, { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar } from 'react-native';
 
-import { CardContext } from './context/CartContext';
+import { AppContext } from './context/AppContext';
 
 import ShopNavigation from './components/ShopNavigation';
 
 import { ProductInterface } from './interfaces/product-interface';
+import { OrderInterface } from './interfaces/order-interface';
 
 import { STORAGE_KEY_CART } from './config/storage-keys';
 
 const App: () => React.ReactNode = () => {
   const [isStorageDataRead, setIsStorageDataRead] = useState<boolean>(false);
   const [cart, setCart] = useState<ProductInterface[]>([]);
+  const [orders, setOrders] = useState<OrderInterface[]>([]);
 
   const storeData = async (array: ProductInterface[]) => {
     try {
@@ -51,9 +53,9 @@ const App: () => React.ReactNode = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <CardContext.Provider value={{ cart, setCart }}>
+      <AppContext.Provider value={{ cart, setCart, orders, setOrders }}>
         <ShopNavigation />
-      </CardContext.Provider>
+      </AppContext.Provider>
     </>
   );
 };

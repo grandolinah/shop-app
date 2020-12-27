@@ -3,7 +3,7 @@ import { View, Text, Button, StyleSheet, FlatList } from 'react-native';
 
 import { COLORS } from '../../config/colors';
 
-import { useCart } from '../../context/CartContext';
+import { useAppContext } from '../../context/AppContext';
 
 import { ProductInterface } from '../../interfaces/product-interface';
 
@@ -12,9 +12,10 @@ import { cardShadow } from '../../styles/card-shadow';
 import CartItem from '../../components/shop/CartItem';
 
 const CartScreen = () => {
-  const { cart, setCart } = useCart();
+  const { cart, setCart, orders, setOrders } = useAppContext();
   const [totalAmount, setTotalAmount] = useState<number>(0);
 
+  console.log(orders);
   const calculateTotalAmount = (cart: ProductInterface[]) => {
     let totalAmount = 0;
 
@@ -62,7 +63,14 @@ const CartScreen = () => {
         <Button
           title="Order Now"
           onPress={() => {
-            // TODO make order
+            const newOrder = {
+              totalPrice: calculateTotalAmount(cart),
+              items: cart,
+              date: Date.now(),
+              orderId: `${Date.now()}-order`
+            };
+
+            setOrders([...orders, newOrder]);
           }}
           color={COLORS.maroonFlush}
           disabled={cart.length === 0}
