@@ -5,7 +5,7 @@ import { StatusBar } from 'react-native';
 
 import { AppContext } from './context/AppContext';
 
-import ShopNavigation from './components/ShopNavigation';
+import DrawerStack from './components/ShopNavigation';
 
 import { ProductInterface } from './interfaces/product-interface';
 import { OrderInterface } from './interfaces/order-interface';
@@ -54,7 +54,7 @@ const App: () => React.ReactNode = () => {
     <>
       <StatusBar barStyle="dark-content" />
       <AppContext.Provider value={{ cart, setCart, orders, setOrders }}>
-        <ShopNavigation />
+        <DrawerStack />
       </AppContext.Provider>
     </>
   );

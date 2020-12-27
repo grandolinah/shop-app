@@ -15,7 +15,6 @@ const CartScreen = () => {
   const { cart, setCart, orders, setOrders } = useAppContext();
   const [totalAmount, setTotalAmount] = useState<number>(0);
 
-  console.log(orders);
   const calculateTotalAmount = (cart: ProductInterface[]) => {
     let totalAmount = 0;
 
@@ -67,10 +66,13 @@ const CartScreen = () => {
               totalPrice: calculateTotalAmount(cart),
               items: cart,
               date: Date.now(),
-              orderId: `${Date.now()}-order`
+              orderId: `${Date.now()}-order`,
             };
 
             setOrders([...orders, newOrder]);
+
+            // clear cart
+            setCart([]);
           }}
           color={COLORS.maroonFlush}
           disabled={cart.length === 0}
