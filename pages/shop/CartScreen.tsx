@@ -27,8 +27,25 @@ const CardScreen = () => {
 
   const onRemoveHandler = (id: string) => {
     const restProducts = cart.filter((cartItem) => cartItem.productId !== id);
+    const sameProduct = cart.filter((cartItem) => cartItem.productId === id);
 
-    setCart([...restProducts]);
+    if (sameProduct.length > 0) {
+      const updatedQuantity =
+        sameProduct[0].quantity > 1 ? sameProduct[0].quantity - 1 : 0;
+
+      if (updatedQuantity !== 0) {
+        const updatedItem = {
+          title: sameProduct[0].title,
+          price: sameProduct[0].price,
+          productId: sameProduct[0].productId,
+          quantity: updatedQuantity,
+        };
+
+        setCart([...restProducts, updatedItem]);
+      } else {
+        setCart([...restProducts]);
+      }
+    }
   };
 
   useEffect(() => {
