@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 
 import PRODUCTS from '../../data/dummy-data';
+
 import ProductItem from '../../components/shop/ProductItem';
 
 const ProductsOverviewScreen = ({ navigation }) => {
@@ -22,6 +23,7 @@ const ProductsOverviewScreen = ({ navigation }) => {
             }}
             onAddToCard={() => {
               console.log('pressed');
+              // TODO
             }}
           />
         )}

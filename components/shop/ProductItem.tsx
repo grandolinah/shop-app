@@ -11,6 +11,9 @@ import {
 } from 'react-native';
 
 import { COLORS } from '../../config/colors';
+
+import { cardShadow } from '../../styles/card-shadow';
+
 import { ProductItemPropsInterface } from '../../interfaces/product-item-props-interface';
 
 const ProductItem = ({
@@ -61,16 +64,7 @@ const ProductItem = ({
 
 const styles = StyleSheet.create({
   product: {
-    // IOS only
-    shadowColor: COLORS.black,
-    shadowOpacity: 0.26,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
-    // Android only
-    elevation: 5,
-    // Both
-    borderRadius: 10,
-    backgroundColor: COLORS.white,
+    ...cardShadow,
     height: 300,
     margin: 20,
   },
