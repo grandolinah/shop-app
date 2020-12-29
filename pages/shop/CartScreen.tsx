@@ -63,7 +63,7 @@ const CartScreen = () => {
           title="Order Now"
           onPress={() => {
             const newOrder = {
-              totalPrice: calculateTotalAmount(cart),
+              totalAmount: calculateTotalAmount(cart),
               items: cart,
               date: Date.now(),
               orderId: `${Date.now()}-order`,

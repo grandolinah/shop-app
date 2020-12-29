@@ -10,16 +10,20 @@ import DrawerStack from './components/ShopNavigation';
 import { ProductInterface } from './interfaces/product-interface';
 import { OrderInterface } from './interfaces/order-interface';
 
-import { STORAGE_KEY_CART } from './config/storage-keys';
+import { STORAGE_KEY_CART, STORAGE_KEY_ORDERS } from './config/storage-keys';
 
 const App: () => React.ReactNode = () => {
   const [isStorageDataRead, setIsStorageDataRead] = useState<boolean>(false);
   const [cart, setCart] = useState<ProductInterface[]>([]);
   const [orders, setOrders] = useState<OrderInterface[]>([]);
 
-  const storeData = async (array: ProductInterface[]) => {
+  console.log(orders);
+
+  const storeData = async (cart: ProductInterface[], orders: OrderInterface[]) => {
     try {
-      await AsyncStorage.setItem(STORAGE_KEY_CART, JSON.stringify(array));
+      await AsyncStorage.setItem(STORAGE_KEY_CART, JSON.stringify(cart));
+
+      await AsyncStorage.setItem(STORAGE_KEY_ORDERS, JSON.stringify(orders));
     } catch (error) {
       console.log(error);
     }
@@ -27,10 +31,15 @@ const App: () => React.ReactNode = () => {
 
   const readData = async () => {
     try {
-      const storageArray = await AsyncStorage.getItem(STORAGE_KEY_CART);
+      const storageArrayCart = await AsyncStorage.getItem(STORAGE_KEY_CART);
+      const storageArrayOrders = await AsyncStorage.getItem(STORAGE_KEY_ORDERS);
 
-      if (storageArray) {
-        setCart(JSON.parse(storageArray));
+      if (storageArrayCart) {
+        setCart(JSON.parse(storageArrayCart));
+      }
+
+      if (storageArrayOrders) {
+        setOrders(JSON.parse(storageArrayOrders));
       }
     } catch (error) {
       console.log(error);
@@ -46,7 +55,7 @@ const App: () => React.ReactNode = () => {
 
   useEffect(() => {
     if (isStorageDataRead) {
-      storeData(cart);
+      storeData(cart, orders);
     }
   }, [cart, isStorageDataRead]);
 
