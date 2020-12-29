@@ -1,3 +1,3 @@
-export interface Colors {
+export interface ColorsInterface {
   [key: string]: string;
 }
