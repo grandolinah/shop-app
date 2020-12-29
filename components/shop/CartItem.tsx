@@ -23,19 +23,23 @@ const CartItem = ({
     <View style={styles.cartItem}>
       <View style={styles.itemData}>
         <Text style={styles.quantity}>{quantity} </Text>
-        <Text style={styles.mainText} numberOfLines={1} >{title}</Text>
+        <Text style={styles.mainText} numberOfLines={1}>
+          {title}
+        </Text>
       </View>
       <View style={styles.itemData}>
         <Text style={styles.mainText}>${amount.toFixed(2)}</Text>
-        <TouchableOpacity
-          onPress={() => onRemove(id)}
-          style={styles.deleteButton}>
-          <Icon
-            name={Platform.OS === 'android' ? 'md-trash' : 'ios-trash'}
-            size={23}
-            color={COLORS.maroonFlush}
-          />
-        </TouchableOpacity>
+        {onRemove && (
+          <TouchableOpacity
+            onPress={() => onRemove(id)}
+            style={styles.deleteButton}>
+            <Icon
+              name={Platform.OS === 'android' ? 'md-trash' : 'ios-trash'}
+              size={23}
+              color={COLORS.maroonFlush}
+            />
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );

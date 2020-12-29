@@ -3,5 +3,5 @@ export interface CartItemPropsInterface {
   title: string;
   amount: number;
   id?: string;
-  onRemove(id: string): void;
+  onRemove?(id: string): void;
 }

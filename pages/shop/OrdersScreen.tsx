@@ -18,7 +18,7 @@ const OrderScreen = () => {
             totalAmount={itemData.item.totalAmount}
             date={itemData.item.date}
             orderId={itemData.item.orderId}
-            onViewDetails={() => { }}
+            items={itemData.item.items}
           />
         )}
       />
