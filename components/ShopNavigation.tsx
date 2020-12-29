@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import ProductsOverviewScreen from '../pages/shop/ProductsOverviewScreen';
 import ProductDetailScreen from '../pages/shop/ProductDetailScreen';
@@ -115,8 +116,34 @@ const DrawerStack = () => {
   return (
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Shop" component={ShopNavigation} />
-        <Drawer.Screen name="Orders" component={Orders} />
+        <Drawer.Screen
+          name="Products"
+          component={ShopNavigation}
+          options={{
+            title: 'Product',
+            drawerIcon: ({ focused, size }) => (
+              <Icon
+                name="ios-pricetags"
+                size={size}
+                color={focused ? COLORS.maroonFlush : COLORS.amber}
+              />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="Orders"
+          component={Orders}
+          options={{
+            title: 'Orders',
+            drawerIcon: ({ focused, size }) => (
+              <Icon
+                name="ios-layers"
+                size={size}
+                color={focused ? COLORS.maroonFlush : COLORS.amber}
+              />
+            ),
+          }}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );
